@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aafrina, Please Forgive Me ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+        body {
+            font-family: 'Dancing Script', cursive;
+            text-align: center;
+            background: linear-gradient(to bottom right, #0a0a2a, #29193d);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+        }
+        h1 {
+            font-size: 38px;
+            color: #ff99cc;
+            text-shadow: 0 0 10px #ff66b2;
+            animation: heartbeat 2s infinite;
+        }
+        p {
+            font-size: 22px;
+            max-width: 80%;
+            margin: 20px;
+        }
+        button {
+            padding: 15px 35px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background-color: #ff3366;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0 0 10px #ff6699;
+        }
+        button:hover {
+            background-color: #cc0044;
+            transform: scale(1.1);
+        }
+        .rose {
+            position: absolute;
+            bottom: -100px;
+            font-size: 50px;
+            animation: rise 5s ease-in-out forwards;
+            display: none;
+        }
+        .heart {
+            position: absolute;
+            color: red;
+            font-size: 15px;
+            animation: float 4s linear infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-500px) rotate(360deg); opacity: 0; }
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        @keyframes rise {
+            0% { bottom: -100px; opacity: 0; }
+            100% { bottom: 50px; opacity: 1; }
+        }
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .star {
+            position: absolute;
+            background: white;
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            50% { opacity: 1; }
+            100% { opacity: 0.3; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="stars"></div>
+
+    <h1>Aafrina, Please Forgive Me ❤️</h1>
+    <p id="apologyMessage">Tap the button to unlock my heart, my love.</p>
+    <button onclick="generateApology()">Unblock My Heart 🥺</button>
+    <div class="rose" id="rose">🌹</div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        function generateApology() {
+            const messages = [
+                "Aafrina, I'm so sorry. I acted out of anger and hurt you. 💔",
+                "I never wanted to say those words. It was the heat of the moment. 💖",
+                "Blocking you was the worst mistake ever. I miss you every second. 😢",
+                "I now realize how much I love you. You're my world, my happiness. 🌎",
+                "I would do anything to make things right. Please give me a chance. 🥺",
+                "You are the light of my life. Without you, I am lost. 🌟",
+                "I deeply regret my actions. You are my forever. 💞"
+            ];
+            let index = 0;
+            let message = messages[Math.floor(Math.random() * messages.length)];
+            let displayMessage = "";
+            let interval = setInterval(() => {
+                displayMessage += message[index];
+                document.getElementById("apologyMessage").innerText = displayMessage;
+                index++;
+                if (index === message.length) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        document.getElementById("rose").style.display = "block";
+                    }, 1000);
+                }
+            }, 50);
+
+            createHearts();
+            createStars();
+            document.getElementById("bgMusic").play();
+        }
+
+        function createHearts() {
+            for (let i = 0; i < 20; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = "❤️";
+                heart.classList.add("heart");
+                heart.style.left = Math.random() * window.innerWidth + "px";
+                heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+                heart.style.fontSize = Math.random() * 20 + 20 + "px";
+                document.body.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }
+        }
+
+        function createStars() {
+            const starsContainer = document.querySelector(".stars");
+            for (let i = 0; i < 50; i++) {
+                let star = document.createElement("div");
+                star.classList.add("star");
+                star.style.top = Math.random() * 100 + "vh";
+                star.style.left = Math.random() * 100 + "vw";
+                star.style.animationDuration = (Math.random() * 2 + 1) + "s";
+                starsContainer.appendChild(star);
+            }
+        }
+    </script>
+
+</body>
+</html>
